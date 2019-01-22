@@ -8,20 +8,16 @@ var mongoose = require("mongoose")
 
 mongoose.connect("mongodb://localhost/api")
 
-var User = require("./models/user.js")
+var users = require("./routes/users")
 
-User.create({username:"ahmedjannadi",password:"jannadi"})
-
-User.find().then(function(users){console.log(users)})
+app.use("/api", users)
 
 app.use(bodyparser.json())
 app.use(cors())
 
+
 app.get("/",function(req,res){
-	
-	User.find().then(function(users){
-		res.send(users)
-	})
+	res.send("hello world")	
 })
 
 
